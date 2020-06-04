@@ -22,8 +22,8 @@ async function bootstrap() {
   app.enableCors();
   app.setGlobalPrefix('/api/v1');
 
-  const port = 80;
-  await app.listen(port);
-  console.log('Application is running on http://localhost:80/api/v1/');
+  const Port = Number(process.env.PORT) || 3000;
+  await app.listen(Port);
+  console.log('Application is running on Port: '+Port);
 }
 bootstrap();
