@@ -11,11 +11,14 @@ import { AppModule } from './app.module';
 
 dotenv.config();
 
+// async function bootstrap() {
+//   const app = await NestFactory.create<NestFastifyApplication>(
+//     AppModule,
+//     new FastifyAdapter(),
+//   );
+
 async function bootstrap() {
-  const app = await NestFactory.create<NestFastifyApplication>(
-    AppModule,
-    new FastifyAdapter(),
-  );
+  const app = await NestFactory.create(AppModule);
 
   app.useGlobalPipes(new ValidationPipe());
   app.use(helmet());
@@ -24,6 +27,7 @@ async function bootstrap() {
 
   const Port = Number(process.env.PORT) || 3000;
   await app.listen(Port);
-  console.log('Application is running on Port: '+Port);
+  console.log('Application is running on Port: ' + Port);
 }
+
 bootstrap();
